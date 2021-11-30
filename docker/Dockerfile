@@ -1,3 +1,11 @@
 FROM centos:centos7
 
-RUN yum -y install java-1.8.0-openjdk,maven,git
+MAINTAINER NeilCao <neil.cao@assaabloy.com>
+
+ADD spring-boot-hello-world-0.0.1-SNAPSHOT.jar /opt
+
+WORKDIR /opt
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "spring-boot-hello-world-0.0.1-SNAPSHOT.jar"]
