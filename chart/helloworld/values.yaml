@@ -8,7 +8,7 @@ namespace: default
 
 
 image:
-  repository: 593827752021.dkr.ecr.us-west-2.amazonaws.com/caojing
+  repository: public.ecr.aws/i2q9b0h5/spring-demo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1.0.0
