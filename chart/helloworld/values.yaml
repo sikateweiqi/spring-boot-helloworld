@@ -11,7 +11,7 @@ image:
   repository: 593827752021.dkr.ecr.us-west-2.amazonaws.com/caojing
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: v1.0.0
 
 imagePullSecrets: []
 nameOverride: ""
