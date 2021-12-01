@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
         - name: demo
-          image: springboot/demo:0.0.1
-          imagePullPolicy: IfNotPresent
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           args: ["--spring.config.location=application.properties"]
           ports:
             - containerPort: {{ .Values.service.port }}

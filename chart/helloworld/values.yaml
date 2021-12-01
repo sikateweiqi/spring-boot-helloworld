@@ -8,10 +8,10 @@ namespace: default
 
 
 image:
-  repository: nginx
+  repository: 593827752021.dkr.ecr.us-west-2.amazonaws.com/caojing:latest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: latest
 
 imagePullSecrets: []
 nameOverride: ""
