@@ -2,9 +2,14 @@ FROM centos:centos7
 
 MAINTAINER NeilCao <neil.cao@assaabloy.com>
 
-RUN  yum install -y maven,git
+RUN mkdir ~/.ssh
+RUN touch ~/.ssh/known_hosts
+RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+COPY ~/.ssh/id_rsa.pub ~/.ssh
+COPY ~/.ssh/id_rsa ~/.ssh
+RUN chmod 600 ~/.ssh/id_rsa*
 
-ADD spring-boot-hello-world-0.0.1-SNAPSHOT.jar /opt
+RUN  yum install -y maven,git
 
 WORKDIR /opt
 
