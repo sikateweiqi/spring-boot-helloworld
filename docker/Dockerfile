@@ -16,7 +16,9 @@ RUN mvn clean
 
 RUN mvn package
 
-RUN cp /opt/spring-boot-helloworld/target/spring-boot-hello-world-0.0.1-SNAPSHOT.jar ./
+RUN ls -tl
+
+RUN cp /opt/target/spring-boot-hello-world-0.0.1-SNAPSHOT.jar ./
 
 RUN mvn clean
 
