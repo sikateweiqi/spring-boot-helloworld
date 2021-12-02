@@ -2,13 +2,11 @@ FROM centos:centos7
 
 MAINTAINER NeilCao <neil.cao@assaabloy.com>
 
-RUN  yum install -y maven,git,ssh-keyscan
+RUN  yum install -y maven,git,openssh-server;yum clean all
 
 RUN mkdir ~/.ssh
-RUN touch ~/.ssh/known_hosts
-RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
-COPY ~/.ssh/id_rsa.pub ~/.ssh
-COPY ~/.ssh/id_rsa ~/.ssh
+COPY ~/.ssh/id_rsa.pub /root/.ssh
+COPY ~/.ssh/id_rsa /root/.ssh
 RUN chmod 600 ~/.ssh/id_rsa*
 
 WORKDIR /opt
