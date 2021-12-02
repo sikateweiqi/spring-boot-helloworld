@@ -6,7 +6,7 @@ RUN  yum install -y maven;yum clean all
 
 WORKDIR /opt
 
-COPY spring-boot-helloworld ./
+COPY . ./
 
 RUN ls -tl
 
