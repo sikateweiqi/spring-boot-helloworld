@@ -2,24 +2,25 @@ FROM centos:centos7
 
 MAINTAINER NeilCao <neil.cao@assaabloy.com>
 
-RUN  yum install -y maven,git,openssh-server;yum clean all
-
-RUN mkdir ~/.ssh
-COPY ~/.ssh/id_rsa.pub /root/.ssh
-COPY ~/.ssh/id_rsa /root/.ssh
-RUN chmod 600 ~/.ssh/id_rsa*
+RUN  yum install -y maven;yum clean all
 
 WORKDIR /opt
 
-RUN git clone git@github.com:sikateweiqi/spring-boot-helloworld.git
+COPY spring-boot-helloworld ./
 
-WORKDIR /opt/spring-boot-helloworld
+RUN ls -tl
+
+WORKDIR /opt
 
 RUN mvn clean
 
 RUN mvn package
 
-WORKDIR /opt/spring-boot-helloworld/target
+RUN cp /opt/spring-boot-helloworld/target/spring-boot-hello-world-0.0.1-SNAPSHOT.jar ./
+
+RUN mvn clean
+
+RUN  yum remove -y maven
 
 EXPOSE 8080
 
