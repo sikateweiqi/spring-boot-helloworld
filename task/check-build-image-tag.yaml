@@ -1,0 +1,45 @@
+platform: linux
+image_resource:
+  type: registry-image
+  source:
+    repository: busybox
+run:
+  path: /bin/sh
+  args:
+    - -ec
+    - |
+      cd repo/
+      fmt='
+      	r=%(refname)
+      	t=%(*objecttype)
+      	T=${r#refs/tags/}
+
+      	o=%(*objectname:short)
+      	n=%(*authorname)
+      	e=%(*authoremail)
+      	s=%(*subject)
+      	d=%(*authordate)
+      	b=%(*body)
+          c=%(taggerdate:short)
+
+      	if test "z$t" = z;then
+              t=%(objecttype)
+      		o=%(objectname:short)
+      		n=%(authorname)
+      		e=%(authoremail)
+      		s=%(subject)
+      		d=%(authordate)
+      		b=%(body)
+      	fi
+
+          if  [[  "$T" =~ "^v[0-9]+\.[0-9]+\.[0-9]+\-[0-9]+$"  ]];then
+              if test "z$c" = z;then
+                  echo "Tag $T points at a $t object $o which was created by authored $n $e without standard."
+              else
+                  echo "Tag $T points at a $t object $o which was created at $c by authored $n $e with standard."
+              fi
+          fi
+      '
+
+      eval=`git for-each-ref --shell --format="$fmt"  --sort=-refname refs/tags`
+      eval "$eval"
