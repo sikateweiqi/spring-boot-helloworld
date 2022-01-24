@@ -2,7 +2,7 @@ platform: linux
 image_resource:
   type: registry-image
   source:
-    repository: github-actions:v1
+    repository: docker/github-actions
 run:
   path: /bin/sh
   args:
