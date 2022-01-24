@@ -2,7 +2,7 @@ platform: linux
 image_resource:
   type: registry-image
   source:
-    repository: busybox
+    repository: docker/github-actions:v1
 run:
   path: /bin/sh
   args:
